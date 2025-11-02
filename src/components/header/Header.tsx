@@ -1,5 +1,12 @@
-import { styled, AppBar as MuiAppBar, Toolbar, Stack } from "@mui/material";
+import {
+  styled,
+  AppBar as MuiAppBar,
+  Toolbar,
+  Stack,
+  Typography,
+} from "@mui/material";
 import ColorModeSelect from "@/theme/ColorModeSelect";
+import { useGetEmployeeQuery } from "@/services";
 
 const AppBar = styled(MuiAppBar)(({ theme }) => ({
   borderWidth: 0,
@@ -11,6 +18,11 @@ const AppBar = styled(MuiAppBar)(({ theme }) => ({
 }));
 
 export const Header = () => {
+  const { data } = useGetEmployeeQuery({ id: 1 }); // mocked id because /login request returns only token, there is no option to get logged in user data, I don't want to map users by email to find id
+  const name = data?.data
+    ? `${data.data.first_name} ${data.data.last_name}`
+    : "";
+
   return (
     <AppBar color="inherit" position="absolute" sx={{ displayPrint: "none" }}>
       <Toolbar sx={{ backgroundColor: "inherit", mx: { xs: -0.75, sm: -1 } }}>
@@ -29,6 +41,9 @@ export const Header = () => {
             spacing={1}
             sx={{ marginLeft: "auto" }}
           >
+            <Typography variant="h6" component="div" noWrap>
+              {name}
+            </Typography>
             <Stack direction="row" alignItems="center">
               <ColorModeSelect />
             </Stack>
