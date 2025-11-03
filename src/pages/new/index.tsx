@@ -4,7 +4,7 @@ import { Box } from "@mui/material";
 import { EmployeeForm } from "@/forms";
 import { PageContainer } from "@/components";
 import { useCreateEmployeeMutation } from "@/services";
-import { IError, type IEmployeeFormValues } from "@/types";
+import type { IError, IEmployeeFormValues } from "@/types";
 
 export default function CreatePage() {
   const router = useRouter();

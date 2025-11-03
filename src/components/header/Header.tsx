@@ -20,7 +20,7 @@ const AppBar = styled(MuiAppBar)(({ theme }) => ({
 export const Header = () => {
   const { data } = useGetEmployeeQuery({ id: 1 }); // mocked id because /login request returns only token, there is no option to get logged in user data, I don't want to map users by email to find id
   const name = data?.data
-    ? `${data.data.first_name} ${data.data.last_name}`
+    ? `Hello, ${data.data.first_name} ${data.data.last_name}`
     : "";
 
   return (
