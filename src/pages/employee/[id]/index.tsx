@@ -108,6 +108,7 @@ export default function EmployeeShowPage() {
         <Divider sx={{ my: 3 }} />
         <Stack direction="row" spacing={2} justifyContent="space-between">
           <Button
+            id="employee-back"
             variant="contained"
             startIcon={<ArrowBackIcon />}
             onClick={() => router.push("/")}
@@ -116,6 +117,7 @@ export default function EmployeeShowPage() {
           </Button>
           <Stack direction="row" spacing={2}>
             <Button
+              id="employee-edit"
               variant="contained"
               startIcon={<EditIcon />}
               onClick={() => router.push(`/employee/${id}/edit`)}
@@ -123,6 +125,7 @@ export default function EmployeeShowPage() {
               Edit
             </Button>
             <Button
+              id="employee-delete"
               variant="contained"
               color="error"
               startIcon={<DeleteIcon />}

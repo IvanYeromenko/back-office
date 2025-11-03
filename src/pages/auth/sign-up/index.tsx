@@ -24,6 +24,7 @@ export default function SignUpPage() {
             <Link
               component={NextLink}
               href="/auth/sign-in"
+              id="go-to-sign-in"
               variant="body2"
               sx={{ alignSelf: "center" }}
             >

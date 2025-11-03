@@ -144,6 +144,7 @@ export const EmployeeForm = (props: IEmployeeFormProps) => {
           </FormGroup>
           <Stack direction="row" spacing={2} justifyContent="space-between">
             <Button
+              id="employee-back"
               variant="contained"
               startIcon={<ArrowBackIcon />}
               onClick={() => router.push(backButtonPath || "/")}
@@ -151,6 +152,7 @@ export const EmployeeForm = (props: IEmployeeFormProps) => {
               Back
             </Button>
             <Button
+              id="employee-submit"
               type="submit"
               variant="contained"
               size="large"

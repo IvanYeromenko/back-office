@@ -20,7 +20,7 @@ export const useValidationSchema = (formName: TForms) => {
           .email("Email is not valid"),
         password: Yup.string()
           .required("This field is required")
-          .length(10, "Password must contain 7 digits"),
+          .length(10, "Password must contain 10 digits"),
       }),
       signUp: Yup.object().shape({
         name: Yup.string().required("This field is required"),
@@ -29,10 +29,10 @@ export const useValidationSchema = (formName: TForms) => {
           .email("Email is not valid"),
         password: Yup.string()
           .required("This field is required")
-          .length(10, "Password must contain 7 digits"),
+          .length(10, "Password must contain 10 digits"),
         confirmPassword: Yup.string()
           .required("This field is required")
-          .length(10, "Password must contain 7 digits")
+          .length(10, "Password must contain 10 digits")
           .oneOf([Yup.ref("password")], "Passwords must match"),
       }),
     };

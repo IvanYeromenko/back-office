@@ -100,7 +100,7 @@ export const SignUpForm = () => {
               value={formik.values.password}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              error={formik.touched.email && Boolean(formik.errors.password)}
+              error={formik.touched.password && Boolean(formik.errors.password)}
               helperText={formik.touched.password && formik.errors.password}
             />
           </FormControl>
@@ -123,6 +123,7 @@ export const SignUpForm = () => {
             />
           </FormControl>
           <Button
+            id="sign-up-submit"
             type="submit"
             loading={isLoading}
             fullWidth

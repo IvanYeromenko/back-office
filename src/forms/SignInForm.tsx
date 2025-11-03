@@ -89,6 +89,7 @@ export const SignInForm = () => {
             />
           </FormControl>
           <Button
+            id="sign-in-submit"
             type="submit"
             loading={isLoading}
             fullWidth

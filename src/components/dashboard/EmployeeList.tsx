@@ -71,12 +71,14 @@ export const EmployeeList = () => {
             icon={<EditIcon />}
             label="Edit"
             onClick={() => router.push(`/employee/${row.id}/edit`)}
+            id={`edit-${row.id}`}
           />,
           <GridActionsCellItem
             key="delete-item"
             icon={<DeleteIcon />}
             label="Delete"
             onClick={() => handleDelete(row)}
+            id={`delete-${row.id}`}
           />,
         ],
       },
@@ -92,12 +94,13 @@ export const EmployeeList = () => {
         <Stack direction="row" alignItems="center" spacing={1}>
           <Tooltip title="Reload data" placement="right" enterDelay={1000}>
             <div>
-              <IconButton size="small" aria-label="refresh" onClick={refetch}>
+              <IconButton id="refresh-button" size="small" aria-label="refresh" onClick={refetch}>
                 <RefreshIcon />
               </IconButton>
             </div>
           </Tooltip>
           <Button
+            id="create-button"
             variant="contained"
             onClick={() => router.push(`/new`)}
             startIcon={<AddIcon />}
