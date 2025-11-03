@@ -1,4 +1,5 @@
-import { useState, useMemo, useEffect, useCallback } from "react";
+import { useMemo, useEffect, useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import AddIcon from "@mui/icons-material/Add";
 import RefreshIcon from "@mui/icons-material/Refresh";
@@ -15,23 +16,27 @@ import {
 import { PageContainer } from "../containers";
 import { useDeleteEmployeeMutation, useGetEmployeesQuery } from "@/services";
 import { useNotifications } from "@/hooks";
+import { setPaginationModel } from "@/store/paginationSlice";
+import { type TAppDispatch, TRootState } from "@/store";
 import type { IEmployee, IError } from "@/types";
-
-const INITIAL_PAGE_SIZE = 6;
 
 export const EmployeeList = () => {
   const router = useRouter();
   const notifications = useNotifications();
-  const [paginationModel, setPaginationModel] = useState<GridPaginationModel>({
-    page: 0,
-    pageSize: INITIAL_PAGE_SIZE,
-  });
+  const dispatch = useDispatch<TAppDispatch>();
+  const paginationModel = useSelector(
+    (state: TRootState) => state.paginationSlice
+  );
   const { data, error, isLoading, refetch } = useGetEmployeesQuery({
     page: paginationModel.page + 1,
     per_page: paginationModel.pageSize,
   });
   const [deleteEmployee, { error: deleteError }] = useDeleteEmployeeMutation();
   const pageTitle = "Employees";
+
+  const handlePaginationChange = (model: GridPaginationModel) => {
+    dispatch(setPaginationModel(model));
+  };
 
   useEffect(() => {
     if (deleteError) {
@@ -94,7 +99,12 @@ export const EmployeeList = () => {
         <Stack direction="row" alignItems="center" spacing={1}>
           <Tooltip title="Reload data" placement="right" enterDelay={1000}>
             <div>
-              <IconButton id="refresh-button" size="small" aria-label="refresh" onClick={refetch}>
+              <IconButton
+                id="refresh-button"
+                size="small"
+                aria-label="refresh"
+                onClick={refetch}
+              >
                 <RefreshIcon />
               </IconButton>
             </div>
@@ -123,7 +133,7 @@ export const EmployeeList = () => {
             pagination
             paginationMode="server"
             paginationModel={paginationModel}
-            onPaginationModelChange={setPaginationModel}
+            onPaginationModelChange={handlePaginationChange}
             disableRowSelectionOnClick
             onRowClick={({ row }) => router.push(`/employee/${row.id}`)}
             loading={isLoading}

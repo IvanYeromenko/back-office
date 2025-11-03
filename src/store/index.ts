@@ -1,7 +1,9 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit"
+import paginationSlice from "./paginationSlice"
 import { authApi, employeeApi } from "@/services"
 
 const rootReducer = combineReducers({
+    paginationSlice,
     [authApi.reducerPath]: authApi.reducer,
     [employeeApi.reducerPath]: employeeApi.reducer
 })
